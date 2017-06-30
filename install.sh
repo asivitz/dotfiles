@@ -9,3 +9,4 @@ cd
 ln -s ./dotfiles/.zshrc ./
 ln -s ./dotfiles/.config ./
 ln -s ./dotfiles/.tmux.conf ./
+ln -s ./dotfiles/.haskeline ./

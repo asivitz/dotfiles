@@ -65,6 +65,10 @@ bindkey -v
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
+# backspace can go beyond beginning of insertion point
+zle -A .backward-kill-word vi-backward-kill-word
+zle -A .backward-delete-char vi-backward-delete-char
+
 unsetopt correct_all
 unsetopt share_history
 
