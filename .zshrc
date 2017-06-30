@@ -52,30 +52,24 @@ export DEFAULT_USER="axis"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-alias emacs="/usr/local/bin/emacs"
 alias vi=nvim
-alias gitx='open ~/Applications/GitX.app'
-alias jump='/usr/local/sbin/lighttpd -D -f ~/Sites/lighttpd.conf'
 alias gs="git status"
 
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+PATH=$PATH:$HOME/.local/bin
 
-export PATH=$PATH
+. /usr/local/etc/profile.d/z.sh
 
-#export ZLSCOLORS="di=32"
-#export LSCOLORS="cxfxcxdxbxegedabagacad"
+export LSCOLORS="cxfxcxdxbxegedabagacad"
 bindkey -v
 
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-# PATH=$PATH:$HOME/.cabal/bin
-PATH=$PATH:$HOME/.local/bin
-
-. /usr/local/etc/profile.d/z.sh
-
-# PATH=$PATH:/Users/axis/Development/ghc-ios-scripts
-
 unsetopt correct_all
 unsetopt share_history
+
+other="./.zshrc_custom"
+if [ -f "$other" ]
+then
+    source $other
+fi
