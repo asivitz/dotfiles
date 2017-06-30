@@ -5,6 +5,7 @@ Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
 Plug 'dag/vim2hs'
 Plug 'AndrewRadev/linediff.vim'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
