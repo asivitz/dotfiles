@@ -4,6 +4,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
 Plug 'dag/vim2hs'
+Plug 'AndrewRadev/linediff.vim'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -152,6 +153,8 @@ noremap <C-J> <C-D>zz
 noremap <C-K> <C-U>zz
 nmap <BACKSPACE> <C-o>
 noremap Q ZQ
+noremap <Leader>m :Linediff<CR>
+noremap <Leader>M :LinediffReset<CR>
 
 noremap L :tabn<CR>
 noremap H :tabp<CR>
