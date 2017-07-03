@@ -59,6 +59,7 @@ set copyindent		" copy the previous indentation on autoindenting
 set ignorecase		" ignore case when searching
 set smartcase		" ignore case if search pattern is all lowercase,case-sensitive otherwise
 set number
+set nofoldenable
 
 " disable sound on errors
 set noerrorbells
@@ -273,7 +274,9 @@ let g:SuperTabDefaultCompletionType = "<c-p>"
 map - <Leader>c<Space>
 
 " --- EasyMotion
-let g:EasyMotion_leader_key = '<Space>'
+"let g:EasyMotion_leader_key = '<Space>'
+
+map <Space> <Plug>(easymotion-jumptoanywhere)
 
 let g:haskell_conceal = 0
 

@@ -275,7 +275,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     "Tooltip
 
     " syntax highlighting groups
-    call <SID>X("Comment", "666666", "", "")
+    call <SID>X("Comment", "777777", "", "")
     call <SID>X("Constant", "FF8888", "", "")
     call <SID>X("Identifier", "87ceeb", "", "none")
     call <SID>X("Statement", "FFFDB9", "", "bold")
