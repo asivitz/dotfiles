@@ -278,6 +278,9 @@ map - <Leader>c<Space>
 
 map <Space> <Plug>(easymotion-jumptoanywhere)
 
+let g:EasyMotion_re_anywhere = '\v' .
+    \       '(<.|^)'
+
 let g:haskell_conceal = 0
 
 au BufRead * normal zR
