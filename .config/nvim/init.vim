@@ -131,6 +131,7 @@ noremap <Leader>z :source $MYVIMRC<CR>:echom "~/.vimrc reloaded"<CR>
 "Find
 nnoremap <expr> <Leader>f ":Ack " . input("Search: ") . "<CR>"
 nnoremap <expr> <Leader>F ":tabe<CR>:Ack " . input("Search: ") . "<CR>"
+nnoremap <expr> <Leader>u ":tabe<CR>:Ack " . expand('<cword>') . "<CR>"
 
 nnoremap <expr> <Leader>s ":cdo s/" . input("Replace: ") . "/" . input("With: ") . "/c \| update<CR>"
 "xnoremap <expr> <Leader>s "y:s/<C-r>=fnameescape(@")" . "/" . input("Replace: ") . "/c \| update"
