@@ -6,10 +6,21 @@ defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/dotfiles
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 cd
-ln -s ./dotfiles/.zshrc ./
-ln -s ./dotfiles/.config ./
-ln -s ./dotfiles/.tmux.conf ./
-ln -s ./dotfiles/.haskeline ./
-ln -s ./dotfiles/.agignore ./
+
+install_link () {
+    if [ -f "./$1" ]
+    then
+        echo "error: dot file already exists: $1"
+        exit 1
+    else
+        ln -s "./dotfiles/$1" ./
+    fi
+}
+
+install_link .zshrc
+install_link .config
+install_link .tmux.conf
+install_link .haskeline
+install_link .agignore
 
 brew install terminal-notifier
