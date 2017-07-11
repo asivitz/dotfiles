@@ -11,3 +11,5 @@ ln -s ./dotfiles/.config ./
 ln -s ./dotfiles/.tmux.conf ./
 ln -s ./dotfiles/.haskeline ./
 ln -s ./dotfiles/.agignore ./
+
+brew install terminal-notifier
