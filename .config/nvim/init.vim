@@ -169,6 +169,15 @@ noremap <leader>cc :botright cope<CR>
 
 noremap g= mfgg=G`f
 
+" use easymotion to yank/paste a particular line
+function! PullInLine()
+    normal mu
+    call EasyMotion#Sol(0,2)
+    normal yy'up
+endfunction
+
+noremap <leader>y :call PullInLine()<CR>
+
 
 " --- move around splits {
 set wmw=0                     " set the min width of a window to 0 so we can maximize others
