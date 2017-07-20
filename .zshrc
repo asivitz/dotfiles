@@ -55,6 +55,7 @@ export EDITOR="$VISUAL"
 alias vi=nvim
 alias gs="git status"
 alias notifyDone='terminal-notifier -title "Terminal" -message "Done with task!"'
+alias todo="vi ~/todo"
 
 PATH=$PATH:$HOME/.local/bin
 
