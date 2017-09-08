@@ -149,7 +149,6 @@ nmap <leader>p :set paste!<BAR>set paste?<CR>
 
 noremap 9 $
 noremap <Leader>l :ListMethods<CR>
-noremap <Leader>q <C-W><C-W>
 noremap <S-Down> <C-D>zz
 noremap <S-Up> <C-U>zz
 noremap <C-J> <C-D>zz
@@ -158,6 +157,7 @@ nmap <BACKSPACE> <C-o>
 noremap Q ZQ
 noremap <Leader>m :Linediff<CR>
 noremap <Leader>M :LinediffReset<CR>
+noremap K :w<CR>
 
 noremap L :tabn<CR>
 noremap H :tabp<CR>
@@ -176,7 +176,7 @@ function! PullInLine()
     normal yy'up
 endfunction
 
-noremap <leader>y :call PullInLine()<CR>
+noremap <leader>q :call PullInLine()<CR>
 
 
 " --- move around splits {
