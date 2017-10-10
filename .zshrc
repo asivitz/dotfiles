@@ -74,8 +74,7 @@ zle -A .backward-delete-char vi-backward-delete-char
 unsetopt correct_all
 unsetopt share_history
 
-other="./.zshrc_custom"
-if [ -f "$other" ]
+if [ -e ~/.zshrc_custom ]
 then
-    source $other
+    source ~/.zshrc_custom
 fi

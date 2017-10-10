@@ -3,7 +3,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
-Plug 'dag/vim2hs'
+Plug 'parsonsmatt/vim2hs'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
