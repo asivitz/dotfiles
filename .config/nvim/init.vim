@@ -294,3 +294,5 @@ let g:EasyMotion_re_anywhere = '\v' .
 let g:haskell_conceal = 0
 
 au BufRead * normal zR
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
