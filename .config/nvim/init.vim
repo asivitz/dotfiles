@@ -20,7 +20,7 @@ set mouse=a
 " Fuzzy find
 set rtp+=/usr/local/opt/fzf
 
-let $FZF_DEFAULT_COMMAND = 'rg -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'fd -t f'
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
