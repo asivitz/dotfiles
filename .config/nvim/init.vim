@@ -20,7 +20,7 @@ set mouse=a
 " Fuzzy find
 set rtp+=/usr/local/opt/fzf
 
-let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'fd -t f'
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
@@ -238,7 +238,7 @@ nmap <silent> <leader>]  <Plug>LocationNext
 " PROGRAMMING SHORTCUTS
 "---------------------------------------------------------------------------
 
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'rg --vimgrep'
 
 " Enable omni completion. (Ctrl-X Ctrl-O)
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -294,3 +294,5 @@ let g:EasyMotion_re_anywhere = '\v' .
 let g:haskell_conceal = 0
 
 au BufRead * normal zR
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

@@ -280,8 +280,12 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
     call <SID>X("Identifier", "87ceeb", "", "none")
     call <SID>X("Statement", "FFFDB9", "", "bold")
     call <SID>X("PreProc", "cd5c5c", "", "")
-    call <SID>X("Type", "bdb76b", "", "bold")
-    call <SID>X("Special", "56CC63", "", "")
+    call <SID>X("Type",          "efe88b", "", "")
+    call <SID>X("hsType",        "efe88b", "", "")
+    call <SID>X("hsStructure",   "efe88b", "", "bold")
+    call <SID>X("hsConditional", "efe88b", "", "bold")
+    call <SID>X("hsOperator",    "cc7c7f", "", "bold")
+    call <SID>X("Special", "96CC63", "", "")
     "Underlined
     call <SID>X("Ignore", "666666", "", "")
     "Error
