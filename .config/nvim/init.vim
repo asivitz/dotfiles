@@ -6,6 +6,8 @@ Plug 'ervandew/supertab'
 Plug 'parsonsmatt/vim2hs'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -18,7 +20,7 @@ set autoread		" auto read when file is changed from outside
 set mouse=a
 
 " Fuzzy find
-set rtp+=/usr/local/opt/fzf
+"set rtp+=/usr/local/opt/fzf
 
 let $FZF_DEFAULT_COMMAND = 'fd -t f'
 
@@ -137,10 +139,14 @@ nnoremap <expr> <Leader>s ":cdo s/" . input("Replace: ") . "/" . input("With: ")
 "xnoremap <expr> <Leader>s "y:s/<C-r>=fnameescape(@")" . "/" . input("Replace: ") . "/c \| update"
 "<C-r>=fnameescape(@")<CR><CR>
 
+"noremap <Leader>d :Buffers<CR>
+
 "quick substitution
 noremap <Leader>r :%s/\<<C-R><C-W>\>//ge<left><left><left>
 
 "Fuzzy find
+noremap <Leader>e :b#<CR>
+noremap <Leader>d :FZF<CR>
 noremap <Leader>t :FZF<CR>
 noremap <Leader>T :tabe<CR>:FZF<CR>
 
