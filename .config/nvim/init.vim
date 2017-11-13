@@ -8,6 +8,7 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -183,7 +184,8 @@ function! PullInLine()
 endfunction
 
 noremap <leader>q :call PullInLine()<CR>
-
+inoremap <leader>4 <$>
+inoremap <leader>8 <*>
 
 " --- move around splits {
 set wmw=0                     " set the min width of a window to 0 so we can maximize others
