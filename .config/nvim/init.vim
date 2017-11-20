@@ -8,7 +8,7 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'derekwyatt/vim-scala'
+"Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
