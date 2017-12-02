@@ -8,6 +8,9 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+Plug 'mhinz/vim-grepper'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -51,6 +54,7 @@ set showmatch		" Cursor shows matching ) and }
 set showmode		" Show current mode
 set wildchar=<TAB>	" start wild expansion in the command line using <TAB>
 set wildmenu            " wild char completion menu
+set hidden
 
 " ignore these files while expanding wild chars
 set wildignore=*.o,*.class,*.pyc,build/**,*.xcodeproj/**,*.m,*.hi,*.png,*.dyn_hi,*.dyn_o
@@ -134,6 +138,7 @@ noremap <Leader>z :source $MYVIMRC<CR>:echom "~/.vimrc reloaded"<CR>
 nnoremap <expr> <Leader>f ":Ack " . input("Search: ") . "<CR>"
 nnoremap <expr> <Leader>F ":tabe<CR>:Ack " . input("Search: ") . "<CR>"
 nnoremap <expr> <Leader>u ":tabe<CR>:Ack " . expand('<cword>') . "<CR>"
+nnoremap <expr> <Leader>e ":Grepper -tool rg -noopen -jump -query '" . expand('<cword>') . "\\s+::\|^" . expand('<cword>') . "$'<CR>"
 
 nnoremap <expr> <Leader>s ":cdo s/" . input("Replace: ") . "/" . input("With: ") . "/c \| update<CR>"
 "xnoremap <expr> <Leader>s "y:s/<C-r>=fnameescape(@")" . "/" . input("Replace: ") . "/c \| update"
@@ -145,8 +150,7 @@ nnoremap <expr> <Leader>s ":cdo s/" . input("Replace: ") . "/" . input("With: ")
 noremap <Leader>r :%s/\<<C-R><C-W>\>//ge<left><left><left>
 
 "Fuzzy find
-noremap <Leader>e :b#<CR>
-noremap <Leader>d :FZF<CR>
+noremap <Leader>d :Buffers<CR>
 noremap <Leader>t :FZF<CR>
 noremap <Leader>T :tabe<CR>:FZF<CR>
 
@@ -182,8 +186,10 @@ function! PullInLine()
     normal yy'up
 endfunction
 
-noremap <leader>q :call PullInLine()<CR>
-
+noremap <leader>q :bd<CR>
+noremap <leader>y :call PullInLine()<CR>
+inoremap <leader>4 <$>
+inoremap <leader>8 <*>
 
 " --- move around splits {
 set wmw=0                     " set the min width of a window to 0 so we can maximize others
@@ -302,3 +308,5 @@ let g:haskell_conceal = 0
 au BufRead * normal zR
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:prosession_dir = '~/.local/share/nvim/session/'

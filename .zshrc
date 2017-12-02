@@ -41,7 +41,7 @@ ZSH_THEME="afowler"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git vi-mode)
 
 DISABLE_AUTO_UPDATE=true
 
@@ -57,15 +57,17 @@ alias gs="git status"
 alias notifyDone='terminal-notifier -title "Terminal" -message "Done with task!"'
 alias todo="vi ~/todo"
 
-PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/.local/bin:/usr/local/sbin
 
 . /usr/local/etc/profile.d/z.sh
 
 export LSCOLORS="cxfxcxdxbxegedabagacad"
-bindkey -v
 
-bindkey '^P' history-beginning-search-backward
-bindkey '^N' history-beginning-search-forward
+# lower vi-mode escape delay
+KEYTIMEOUT=1
+
+#bindkey '^P' history-beginning-search-backward
+#bindkey '^N' history-beginning-search-forward
 
 # backspace can go beyond beginning of insertion point
 zle -A .backward-kill-word vi-backward-kill-word
