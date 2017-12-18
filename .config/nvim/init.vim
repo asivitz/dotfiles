@@ -8,8 +8,6 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
 Plug 'mhinz/vim-grepper'
 call plug#end()
 
@@ -21,6 +19,7 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set mouse=a
+set keymap=dvorak
 
 " Fuzzy find
 "set rtp+=/usr/local/opt/fzf
@@ -134,6 +133,14 @@ endfun
 "reload the config
 noremap <Leader>z :source $MYVIMRC<CR>:echom "~/.vimrc reloaded"<CR>
 
+tnoremap <C-Space> <C-\><C-n>
+
+noremap <C-L> :tabn<CR>
+noremap <C-H> :tabp<CR>
+tnoremap <C-L> <C-\><C-n>:tabn<CR>
+tnoremap <C-H> <C-\><C-n>:tabp<CR>
+
+
 "Find
 nnoremap <expr> <Leader>f ":Ack " . input("Search: ") . "<CR>"
 nnoremap <expr> <Leader>F ":tabe<CR>:Ack " . input("Search: ") . "<CR>"
@@ -169,9 +176,6 @@ noremap <Leader>m :Linediff<CR>
 noremap <Leader>M :LinediffReset<CR>
 noremap K :w<CR>
 
-noremap L :tabn<CR>
-noremap H :tabp<CR>
-
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>``
 
 " open the error console
@@ -190,6 +194,21 @@ noremap <leader>q :bd<CR>
 noremap <leader>y :call PullInLine()<CR>
 inoremap <leader>4 <$>
 inoremap <leader>8 <*>
+
+function! OpenGhcidError()
+  execute "normal! \<C-W>\<C-W>"
+  normal! H
+  normal! "iyt:f:l
+  normal! "uyt:f:l
+  normal! "yyt:f:
+  normal! G
+  execute "normal! \<C-W>\<C-W>"
+  execute "edit " . @i
+  call cursor(@u,@y)
+  normal! zz
+endfunction
+
+noremap <leader>o :call OpenGhcidError()<CR>
 
 " --- move around splits {
 set wmw=0                     " set the min width of a window to 0 so we can maximize others
@@ -310,3 +329,5 @@ au BufRead * normal zR
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 let g:prosession_dir = '~/.local/share/nvim/session/'
+
+highlight TermCursor ctermfg=green guifg=green
