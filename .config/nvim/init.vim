@@ -19,10 +19,6 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set autoread		" auto read when file is changed from outside
 set mouse=a
-set keymap=dvorak
-
-" Fuzzy find
-"set rtp+=/usr/local/opt/fzf
 
 let $FZF_DEFAULT_COMMAND = 'fd -t f'
 
@@ -45,8 +41,6 @@ let mapleader=","
 let g:mapleader=","
 let maplocalleader=","
 let g:maplocalleader=","
-
-hi LineNr ctermfg=darkgray guifg=#555555 gui=none
 
 set clipboard=unnamed	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
@@ -75,8 +69,8 @@ set tm=500
 " TAB setting{
    set tabstop=8                   "A tab is 8 spaces
    set expandtab                   "Always uses spaces instead of tabs
-   set softtabstop=4               "Insert 4 spaces when tab is pressed
-   set shiftwidth=4                "An indent is 4 spaces
+   set softtabstop=2               "Insert 4 spaces when tab is pressed
+   set shiftwidth=2                "An indent is 4 spaces
    set smarttab                    "Indent instead of tab at start of line
    set shiftround                  "Round spaces to nearest shiftwidth multiple
    set nojoinspaces                "Don't convert spaces to tabs
@@ -142,24 +136,19 @@ tnoremap <C-H> <C-\><C-n>:tabp<CR>
 
 
 "Find
-nnoremap <expr> <Leader>f ":Ack " . input("Search: ") . "<CR>"
-nnoremap <expr> <Leader>F ":tabe<CR>:Ack " . input("Search: ") . "<CR>"
-nnoremap <expr> <Leader>u ":tabe<CR>:Ack " . expand('<cword>') . "<CR>"
+nnoremap <expr> <Leader>f ":Rg! " . input("Search: ") . "<CR>"
+nnoremap <expr> <Leader>u ":Rg! " . expand('<cword>') . "<CR>"
 nnoremap <expr> <Leader>e ":Grepper -tool rg -noopen -jump -query '" . expand('<cword>') . "\\s+::\|^" . expand('<cword>') . "$'<CR>"
 
 nnoremap <expr> <Leader>s ":cdo s/" . input("Replace: ") . "/" . input("With: ") . "/c \| update<CR>"
 "xnoremap <expr> <Leader>s "y:s/<C-r>=fnameescape(@")" . "/" . input("Replace: ") . "/c \| update"
 "<C-r>=fnameescape(@")<CR><CR>
 
-"noremap <Leader>d :Buffers<CR>
-
 "quick substitution
 noremap <Leader>r :%s/\<<C-R><C-W>\>//ge<left><left><left>
 
-"Fuzzy find
-noremap <Leader>d :Buffers<CR>
-noremap <Leader>t :FZF<CR>
-noremap <Leader>T :tabe<CR>:FZF<CR>
+noremap <Leader>d :Buffers!<CR>
+noremap <Leader>t :FZF!<CR>
 
 nmap <leader>/ :nohl<CR>
 nmap <leader>p :set paste!<BAR>set paste?<CR>
@@ -197,7 +186,7 @@ inoremap <leader>8 <*>
 
 function! OpenGhcidError()
   execute "normal! \<C-W>\<C-W>"
-  normal! H
+  execute "normal! ?error:\\|warning:\<CR>^"
   normal! "iyt:f:l
   normal! "uyt:f:l
   normal! "yyt:f:
@@ -214,25 +203,6 @@ noremap <leader>o :call OpenGhcidError()<CR>
 set wmw=0                     " set the min width of a window to 0 so we can maximize others
 set wmh=0                     " set the min height of a window to 0 so we can maximize others
 " }
-
-
-" open help file in vertical split to the right
-cnoreabbrev vhelp vert bo help
-
-
-" cabs - less stupidity                                                      {{{
-fu! Single_quote(str)
-  return "'" . substitute(copy(a:str), "'", "''", 'g') . "'"
-endfu
-fu! Cabbrev(key, value)
-  exe printf('cabbrev <expr> %s (getcmdtype() == ":" && getcmdpos() <= %d) ? %s : %s',
-    \ a:key, 1+len(a:key), Single_quote(a:value), Single_quote(a:key))
-endfu
-"}}}
-
-call Cabbrev('fixdquotes',   '%s/“\\|”/"/g')
-call Cabbrev('fixdash',   '%s/ \- /—/g')
-call Cabbrev('fixsquotes', "%s/’/'/g")
 
 " allow multiple indentation/deindentation in visual mode
 vnoremap < <gv
@@ -330,4 +300,13 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 let g:prosession_dir = '~/.local/share/nvim/session/'
 
-highlight TermCursor ctermfg=green guifg=green
+hi LineNr ctermfg=darkgray guifg=#555555 gui=none
+hi TermCursor ctermfg=green guifg=green
+
+" From the fzf.vim docs-- :Rg search command
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
