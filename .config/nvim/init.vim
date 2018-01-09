@@ -9,6 +9,8 @@ Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -34,7 +36,9 @@ augroup END
 syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colors desert256
+let g:airline_theme='luna'
 
 " set leader to ,
 let mapleader=","
@@ -65,25 +69,18 @@ set noerrorbells
 set vb " this removes the bells on MacVim
 set t_vb=
 set tm=500
+" autocmd BufWinEnter,WinEnter term://* startinsert
 
 " TAB setting{
    set tabstop=8                   "A tab is 8 spaces
    set expandtab                   "Always uses spaces instead of tabs
    set softtabstop=2               "Insert 4 spaces when tab is pressed
    set shiftwidth=2                "An indent is 4 spaces
-   set smarttab                    "Indent instead of tab at start of line
    set shiftround                  "Round spaces to nearest shiftwidth multiple
    set nojoinspaces                "Don't convert spaces to tabs
 
    au FileType Makefile set noexpandtab
 "}
-
-" status line {
-set laststatus=2
-set statusline=\ %{HasPaste()}%<%-15.25(%f%)%m%r%h\ %w\ \
-set statusline+=\ \ \ [%{&ff}/%Y]
-set statusline+=\ \ \ %<%20.30(%{hostname()}:%{CurDir()}%)\
-set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
 
 function! CurDir()
     let curdir = substitute(getcwd(), $HOME, "~", "")
@@ -100,77 +97,39 @@ endfunction
 
 "}
 
-
-" C/C++ specific settings
-"autocmd FileType c,cpp,cc set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
-
 "Restore cursor to file position in previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 "---------------------------------------------------------------------------
-" Tip #382: Search for <cword> and replace with input() in all open buffers
-"---------------------------------------------------------------------------
-fun! Replace()
-    let s:word = input("Replace " . expand('<cword>') . " with:")
-    :exe 'bufdo! %s/\<' . expand('<cword>') . '\>/' . s:word . '/ge'
-    :unlet! s:word
-endfun
-
-"---------------------------------------------------------------------------
 " USEFUL SHORTCUTS
 "---------------------------------------------------------------------------
 
-"replace the current word in all opened buffers
-"noremap <leader>r :call Replace()<CR>
-
-"reload the config
-noremap <Leader>z :source $MYVIMRC<CR>:echom "~/.vimrc reloaded"<CR>
-
-tnoremap <C-Space> <C-\><C-n>
-
-noremap <C-L> :tabn<CR>
-noremap <C-H> :tabp<CR>
-tnoremap <C-L> <C-\><C-n>:tabn<CR>
-tnoremap <C-H> <C-\><C-n>:tabp<CR>
-
-
-"Find
-nnoremap <expr> <Leader>f ":Rg! " . input("Search: ") . "<CR>"
-nnoremap <expr> <Leader>u ":Rg! " . expand('<cword>') . "<CR>"
-nnoremap <expr> <Leader>e ":Grepper -tool rg -noopen -jump -query '" . expand('<cword>') . "\\s+::\|^" . expand('<cword>') . "$'<CR>"
-
-nnoremap <expr> <Leader>s ":cdo s/" . input("Replace: ") . "/" . input("With: ") . "/c \| update<CR>"
-"xnoremap <expr> <Leader>s "y:s/<C-r>=fnameescape(@")" . "/" . input("Replace: ") . "/c \| update"
-"<C-r>=fnameescape(@")<CR><CR>
-
-"quick substitution
-noremap <Leader>r :%s/\<<C-R><C-W>\>//ge<left><left><left>
-
-noremap <Leader>d :Buffers!<CR>
-noremap <Leader>t :FZF!<CR>
-
+nmap <BACKSPACE> <C-o>
 nmap <leader>/ :nohl<CR>
 nmap <leader>p :set paste!<BAR>set paste?<CR>
-
+nnoremap <expr> <Leader>e ":Grepper -tool rg -noopen -jump -query '" . expand('<cword>') . "\\s+::\|^" . expand('<cword>') . "$'<CR>"
+nnoremap <expr> <Leader>f ":Rg! " . input("Search: ") . "<CR>"
+nnoremap <expr> <Leader>u ":Rg! " . expand('<cword>') . "<CR>"
+nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>``
 noremap 9 $
-noremap <Leader>l :ListMethods<CR>
-noremap <S-Down> <C-D>zz
-noremap <S-Up> <C-U>zz
+noremap <C-H> :tabp<CR>
 noremap <C-J> <C-D>zz
 noremap <C-K> <C-U>zz
-nmap <BACKSPACE> <C-o>
-noremap Q ZQ
-noremap <Leader>m :Linediff<CR>
+noremap <C-L> :tabn<CR>
 noremap <Leader>M :LinediffReset<CR>
+noremap <Leader>d :Buffers!<CR>
+noremap <Leader>l :ListMethods<CR>
+noremap <Leader>m :Linediff<CR>
+noremap <Leader>t :FZF!<CR>
+noremap <Leader>z :source $MYVIMRC<CR>:echom "~/.vimrc reloaded"<CR>
+noremap <S-Down> <C-D>zz
+noremap <S-Up> <C-U>zz
 noremap K :w<CR>
-
-nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>``
-
-" open the error console
-noremap <leader>cc :botright cope<CR>
-
-noremap g= mfgg=G`f
+noremap Q ZQ
+tnoremap <C-H> <C-\><C-n>:tabp<CR>
+tnoremap <C-L> <C-\><C-n>:tabn<CR>
+tnoremap <C-Space> <C-\><C-n>
 
 " use easymotion to yank/paste a particular line
 function! PullInLine()
