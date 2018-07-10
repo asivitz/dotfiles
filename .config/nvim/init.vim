@@ -1,6 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'easymotion/vim-easymotion'
-Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
 Plug 'parsonsmatt/vim2hs'
@@ -11,6 +10,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'lmeijvogel/vim-yaml-helper'
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'tomtom/tcomment_vim'
+Plug 'gyim/vim-boxdraw'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -36,8 +40,12 @@ augroup END
 syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colors desert256
+hi! link hsOperator hsDelimiter
+
+set termguicolors
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colors gruvbox
+set background=dark
 let g:airline_theme='luna'
 
 " set leader to ,
@@ -240,8 +248,7 @@ set grepprg=grep\ -nH\ $*
 let g:SuperTabDefaultCompletionType = "<c-p>"
 "let g:SuperTabMappingForward = '<c-tab>'
 
-" --- NERD_commenter
-map - <Leader>c<Space>
+map - :TComment<Enter>
 
 " --- EasyMotion
 "let g:EasyMotion_leader_key = '<Space>'
@@ -255,7 +262,7 @@ let g:haskell_conceal = 0
 
 au BufRead * normal zR
 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+map <Leader>1 :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 let g:prosession_dir = '~/.local/share/nvim/session/'
 
