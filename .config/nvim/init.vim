@@ -14,7 +14,10 @@ Plug 'lmeijvogel/vim-yaml-helper'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'tomtom/tcomment_vim'
-Plug 'gyim/vim-boxdraw'
+" Plug 'gyim/vim-boxdraw'
+Plug 'tpope/vim-fugitive'
+Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
+Plug 'tpope/vim-unimpaired'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -119,6 +122,7 @@ nmap <leader>p :set paste!<BAR>set paste?<CR>
 nnoremap <expr> <Leader>e ":Grepper -tool rg -noopen -jump -query '" . expand('<cword>') . "\\s+::\|^" . expand('<cword>') . "$'<CR>"
 nnoremap <expr> <Leader>f ":Rg! " . input("Search: ") . "<CR>"
 nnoremap <expr> <Leader>u ":Rg! " . expand('<cword>') . "<CR>"
+nnoremap <Leader>a :cc<CR>
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>``
 noremap 9 $
 noremap <C-H> :tabp<CR>
