@@ -6,12 +6,15 @@ Plug 'ervandew/supertab'
 Plug 'parsonsmatt/vim2hs'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'airblade/vim-gitgutter'
-Plug '/usr/local/opt/fzf'
+Plug '/usr/share/vim/vimfiles'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
 call plug#end()
+
+inoremap <special> jk <ESC>
 
 set backupdir=~/.local/share/nvim/backup//
 set directory=~/.local/share/nvim/swap//
@@ -37,8 +40,10 @@ syntax on		" syntax highlight
 set hlsearch		" search highlighting
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-colors desert256
-let g:airline_theme='luna'
+"colors desert256
+colorscheme gruvbox
+"let g:airline_theme='luna'
+set background=dark
 
 " set leader to ,
 let mapleader=","
@@ -260,7 +265,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 let g:prosession_dir = '~/.local/share/nvim/session/'
 
 hi LineNr ctermfg=darkgray guifg=#555555 gui=none
-hi TermCursor ctermfg=green guifg=green
+" hi TermCursor ctermfg=green guifg=green
+" hi TermCursorNC ctermfg=red guifg=red
 
 " From the fzf.vim docs-- :Rg search command
 command! -bang -nargs=* Rg

@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=/usr/share/oh-my-zsh/
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -59,7 +59,9 @@ alias todo="vi ~/todo"
 
 PATH=$PATH:$HOME/.local/bin:/usr/local/sbin
 
-. /usr/local/etc/profile.d/z.sh
+# . /usr/local/etc/profile.d/z.sh
+
+eval "$(fasd --init auto)"
 
 export LSCOLORS="cxfxcxdxbxegedabagacad"
 
