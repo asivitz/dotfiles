@@ -12,6 +12,9 @@ Plug 'mhinz/vim-grepper'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
+Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
+Plug 'tpope/vim-unimpaired'
+Plug 'elmcast/elm-vim'
 call plug#end()
 
 inoremap <special> jk <ESC>
@@ -135,6 +138,7 @@ noremap Q ZQ
 tnoremap <C-H> <C-\><C-n>:tabp<CR>
 tnoremap <C-L> <C-\><C-n>:tabn<CR>
 tnoremap <C-Space> <C-\><C-n>
+nnoremap <leader>a :cc<CR>
 
 " use easymotion to yank/paste a particular line
 function! PullInLine()
@@ -265,8 +269,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 let g:prosession_dir = '~/.local/share/nvim/session/'
 
 hi LineNr ctermfg=darkgray guifg=#555555 gui=none
-" hi TermCursor ctermfg=green guifg=green
-" hi TermCursorNC ctermfg=red guifg=red
+hi Cursor cterm=NONE guifg=#555555 gui=none guifg=green guibg=green
 
 " From the fzf.vim docs-- :Rg search command
 command! -bang -nargs=* Rg
@@ -275,3 +278,5 @@ command! -bang -nargs=* Rg
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
       \   <bang>0)
+
+let g:elm_setup_keybindings = 0
