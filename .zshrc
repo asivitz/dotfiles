@@ -63,6 +63,8 @@ PATH=$PATH:$HOME/.local/bin:/usr/local/sbin
 
 export LSCOLORS="cxfxcxdxbxegedabagacad"
 
+export BAT_THEME="zenburn"
+
 # lower vi-mode escape delay
 KEYTIMEOUT=1
 
@@ -80,3 +82,5 @@ if [ -e ~/.zshrc_custom ]
 then
     source ~/.zshrc_custom
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

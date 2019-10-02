@@ -10,14 +10,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'lmeijvogel/vim-yaml-helper'
-Plug 'rafi/awesome-vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'tomtom/tcomment_vim'
-" Plug 'gyim/vim-boxdraw'
-Plug 'tpope/vim-fugitive'
 Plug 'ndmitchell/ghcid', { 'rtp': 'plugins/nvim' }
 Plug 'tpope/vim-unimpaired'
+Plug 'whiteinge/diffconflicts'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -133,7 +130,7 @@ noremap <Leader>M :LinediffReset<CR>
 noremap <Leader>d :Buffers!<CR>
 noremap <Leader>l :ListMethods<CR>
 noremap <Leader>m :Linediff<CR>
-noremap <Leader>t :FZF!<CR>
+noremap <Leader>t :Files!<CR>
 noremap <Leader>z :source $MYVIMRC<CR>:echom "~/.vimrc reloaded"<CR>
 noremap <S-Down> <C-D>zz
 noremap <S-Up> <C-U>zz
@@ -280,3 +277,6 @@ command! -bang -nargs=* Rg
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
       \   <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('up:60%'), <bang>0)
