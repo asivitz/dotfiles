@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.nix-profile/share/oh-my-zsh/
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,12 +54,13 @@ export EDITOR="$VISUAL"
 
 alias vi=nvim
 alias gs="git status"
+alias glt='git log --oneline --decorate --graph --all'
 alias notifyDone='terminal-notifier -title "Terminal" -message "Done with task!"'
 alias todo="vi ~/todo"
 
 PATH=$PATH:$HOME/.local/bin:/usr/local/sbin
 
-. /usr/local/etc/profile.d/z.sh
+# . /usr/local/etc/profile.d/z.sh
 
 export LSCOLORS="cxfxcxdxbxegedabagacad"
 
@@ -84,4 +85,5 @@ then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+# [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/bin" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/bin"
+PATH="$HOME/.ghcup/bin:$PATH"
