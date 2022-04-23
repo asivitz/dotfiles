@@ -87,3 +87,9 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/bin" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/bin"
 PATH="$HOME/.ghcup/bin:$PATH"
+
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End NixA

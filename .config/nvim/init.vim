@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'easymotion/vim-easymotion'
+Plug 'phaazon/hop.nvim'
 Plug 'mileszs/ack.vim'
 Plug 'ervandew/supertab'
 Plug 'parsonsmatt/vim2hs'
@@ -19,6 +19,7 @@ Plug 'whiteinge/diffconflicts'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'LnL7/vim-nix'
 call plug#end()
 
 set backupdir=~/.local/share/nvim/backup//
@@ -258,7 +259,7 @@ map - :TComment<Enter>
 " --- EasyMotion
 "let g:EasyMotion_leader_key = '<Space>'
 
-map <Space> <Plug>(easymotion-jumptoanywhere)
+map <Space> :HopWord<CR>
 
 let g:EasyMotion_re_anywhere = '\v' .
     \       '(<.|^)'
@@ -317,7 +318,7 @@ nmap <silent> gd <Plug>(lcn-definition)
 
 
 " lua << EOF
-" require'lspconfig'.hls.setup{}
+  " require'lspconfig'.hls.setup{}
 " EOF
 
 lua << EOF
@@ -367,4 +368,6 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+require'hop'.setup()
 EOF
